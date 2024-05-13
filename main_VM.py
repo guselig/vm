@@ -1,5 +1,6 @@
 import streamlit as st
 import pyodbc
+import pandas as pd
 
 def init_connection():
     return pyodbc.connect(
