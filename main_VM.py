@@ -1,17 +1,16 @@
 import streamlit as st
 import pyodbc
-import pandas as pd
 
 def init_connection():
     return pyodbc.connect(
         "DRIVER={ODBC Driver 17 for SQL Server};SERVER="
-        + st.secrets["database"]["server"]
+        + st.secrets["server"]
         + ";DATABASE="
-        + st.secrets["database"]["database"]
+        + st.secrets["database"]
         + ";UID="
-        + st.secrets["database"]["username"]
+        + st.secrets["username"]
         + ";PWD="
-        + st.secrets["database"]["password"]
+        + st.secrets["password"]
     )
 
 conn = init_connection()
