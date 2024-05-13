@@ -17,12 +17,12 @@ def init_connection():
 conn = init_connection()
 
 def run_query(query):
-    with conn.cursor() as cur:
-        cur.execute(query)
-        # Usando pandas para ler os resultados do query diretamente em um DataFrame
-        return pd.read_sql_query(query, conn)
+    # Aqui usamos a conexão diretamente com pandas sem criar um cursor explicitamente
+    return pd.read_sql_query(query, conn)
 
-rows = run_query("SELECT * FROM Equipments;")
-
-# Usando st.dataframe para exibir o DataFrame no Streamlit
-st.dataframe(rows)
+try:
+    rows = run_query("SELECT * FROM Equipments;")
+    # Usando st.dataframe para exibir o DataFrame no Streamlit
+    st.dataframe(rows)
+except Exception as e:
+    st.error("An error occurred: " + str(e))
